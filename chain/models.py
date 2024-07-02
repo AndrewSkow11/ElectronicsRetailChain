@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 # 1. Необходимо реализовать модель сети по продаже электроники.
 #
@@ -31,11 +32,10 @@ class Contact(models.Model):
     """Вспомогательный элемент модели звена сети"""
     #  - email,
     email = models.EmailField(
-        max_lenght=256,
         verbose_name='email',
     )
     #   - страна,
-    country = models.CountryField(
+    country = models.CharField(
         max_length=64,
         verbose_name='страна'
     )
@@ -55,6 +55,22 @@ class Contact(models.Model):
         verbose_name='номер дома'
     )
 
+    def __str__(self):
+        return (f'{self.email} - {self.country} - {self.city} - {self.street}'
+                f' - {self.building_number}')
+
+    class Meta:
+        verbose_name = "контакт"
+        verbose_name_plural = "контакты"
+
+
 class Link(models.Model):
     """Модель звена сети"""
     name = models.CharField(max_length=255, verbose_name='название звена')
+
+    def __str__(self):
+        return f'{self.name}'
+
+    class Meta:
+        verbose_name = "звено сети"
+        verbose_name_plural = "звенья сети"
