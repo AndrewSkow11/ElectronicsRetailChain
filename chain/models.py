@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class Contact(models.Model):
@@ -65,15 +66,17 @@ class LinkOfChain(models.Model):
 
     # - Поставщик (предыдущий по иерархии объект сети).
     def get_hierarchy_level(self):
-        """Метод определяет уровень иерархии текущего звена,
-         рекурсивно поднимаясь по цепочке поставщиков"""
-
-        def get_level(link, level=0):
-            if link.supplier:
-                return get_level(link.supplier, level + 1)
+        def get_level(node, level=0):
+            if node.supplier:
+                return get_level(node.supplier, level + 1)
             return level
 
         return get_level(self)
+
+    def clean(self):
+        super().clean()
+        if self.get_hierarchy_level() > 3:
+            raise ValidationError('Максимальная иерархия не должна превышать 3 звенья.')
 
     def __str__(self):
         return f'{self.name}'
