@@ -52,12 +52,13 @@ class LinkOfChain(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name='поставщик'
+        verbose_name='связанное звено цепи'
     )
     debt = models.DecimalField(
         max_digits=16,
         decimal_places=2,
-        verbose_name='задолженность'
+        verbose_name='задолженность',
+        default=0
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
@@ -97,7 +98,6 @@ class Product(models.Model):
     )
     market_date = models.DateField(
         verbose_name='дата выхода на рынок',
-        auto_now_add=True
     )
     link_of_chain = models.ForeignKey(
         LinkOfChain,

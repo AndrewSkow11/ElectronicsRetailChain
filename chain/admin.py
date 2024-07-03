@@ -19,7 +19,8 @@ class AdminLinkOfChain(admin.ModelAdmin):
     actions = [clear_debt]
 
     def get_supplier(self, obj):
-        return obj.supplier.name if obj.supplier else 'Нет'
+        return obj.supplier.name if obj.supplier else ('Нет поставщика '
+                                                       'более низкой иерархии')
 
     get_supplier.short_description = 'Поставщик'
     get_supplier.admin_order_field = 'supplier__name'
