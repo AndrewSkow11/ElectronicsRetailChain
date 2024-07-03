@@ -84,3 +84,10 @@ python3 manage.py migrate
 ```bash
 python3 manage.py runserver
 ```
+
+8. Создайте суперпользователя 
+```shell
+python3 manage.py createsuperuser
+```
+
+9. Авторизируйтесь через админ-панель 

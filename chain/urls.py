@@ -1,4 +1,3 @@
-from django.urls import path, include
 from chain.views import LinkOfChainViewSet, ProductViewSet
 from rest_framework import routers
 

@@ -77,7 +77,8 @@ class LinkOfChain(models.Model):
     def clean(self):
         super().clean()
         if self.get_hierarchy_level() > 3:
-            raise ValidationError('Максимальная иерархия не должна превышать 3 звенья.')
+            raise ValidationError('Максимальная иерархия не'
+                                  ' должна превышать 3 звенья.')
 
     def __str__(self):
         return f'{self.name}'

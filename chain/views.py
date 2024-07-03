@@ -3,7 +3,6 @@ from chain.models import LinkOfChain, Product
 from chain.permissions import IsActiveEmployee
 from chain.serializers import LinkOfChainSerializer, ProductSerializer
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.response import Response
 from django.shortcuts import render
 
 

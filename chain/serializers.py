@@ -27,13 +27,15 @@ class LinkOfChainSerializer(serializers.ModelSerializer):
         if obj.get_hierarchy_level() > 3:
             raise serializers.ValidationError("Иерархия звеньев не "
                                               "может превышать 3")
-        print(obj.get_hierarchy_level())
         return obj.get_hierarchy_level()
 
     def create(self, validated_data):
         contact_data = validated_data.pop('contact')
         contact = Contact.objects.create(**contact_data)
-        link_of_chain = LinkOfChain.objects.create(contact=contact, **validated_data)
+        link_of_chain = LinkOfChain.objects.create(
+            contact=contact,
+            **validated_data
+        )
         return link_of_chain
 
     def update(self, instance, validated_data):
