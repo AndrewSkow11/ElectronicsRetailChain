@@ -64,7 +64,7 @@ class LinkOfChain(models.Model):
     )
 
     # - Поставщик (предыдущий по иерархии объект сети).
-    def get_hierracly_level(self):
+    def get_hierarchy_level(self):
         """Метод определяет уровень иерархии текущего звена,
          рекурсивно поднимаясь по цепочке поставщиков"""
 
