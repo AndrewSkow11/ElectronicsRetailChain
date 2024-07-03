@@ -1,10 +1,12 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from chain.views import LinkOfChainViewSet
+from chain.views import LinkOfChainViewSet, ProductViewSet
+from rest_framework import routers
 
-router = DefaultRouter()
-router.register(r'', LinkOfChainViewSet)
+router = routers.SimpleRouter()
 
-urlpatterns = [
-    path('', include(router.urls)),
-]
+router.register('main', LinkOfChainViewSet)
+router.register('product', ProductViewSet)
+
+
+urlpatterns = []
+urlpatterns += router.urls
