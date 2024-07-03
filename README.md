@@ -42,3 +42,45 @@ CRUD для модели поставщика (запретить обновле
 Добавить возможность фильтрации объектов по определенной стране.
 
 5. Настроить права доступа к API так, чтобы только активные сотрудники имели доступ к API.
+
+## Развёртывание проекта
+
+1. Склонируйте репозиторий
+```sh
+git clone https://github.com/AndrewSkow11/ElectronicsRetailChain
+```
+
+2. Создайте виртуальное окружение и активруйте его
+```sh
+python3 -m venv venv
+source venv/bin/activate
+```
+
+3. Установите зависимости из файла requirements.txt
+```bash
+pip install -r requirements.txt
+```
+
+4. Созадйте и заполните файл .env своими данными (образец env_example)
+```bash
+cp env_example .env
+```
+
+5. Создайте базу данных PostgreSQL любым удобным сопособом, например
+```bash
+psql -U postgres
+```
+затем введите пароль, и после появления в терминале приглашения postgres=# напишите команду 
+```SQL
+CREATE DATABASE electro_retail;
+```
+
+6. Примените миграции
+```bash
+python3 manage.py migrate 
+```
+
+7. Запустие проект
+```bash
+python3 manage.py runserver
+```
